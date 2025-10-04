@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Travessia do Buraco de Minhoca</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Vídeo de Background -->
+    <video id="bg-video" autoplay loop muted playsinline>
+      <source src="assets/background.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Áudio de Tema -->
+    <audio id="theme-audio" loop>
+      <source src="assets/theme.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Controles de Áudio -->
+    <div class="audio-controls">
+      <button id="play-audio" class="audio-btn" title="Tocar música">🎵</button>
+      <button id="pause-audio" class="audio-btn" title="Pausar música">⏸️</button>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="game-container">
+      <!-- Título -->
+      <h1 class="game-title">A Travessia do Buraco de Minhoca</h1>
+      <p class="game-subtitle">Escape dos labirintos interdimensionais</p>
+
+      <!-- Informações do Mapa Atual -->
+      <div class="map-info">
+        <h2 id="map-name">Carregando...</h2>
+        <p id="map-description">Preparando travessia...</p>
+        <div class="map-counter">
+          <span>Mapa <span id="current-map">1</span> de <span id="total-maps">5</span></span>
+        </div>
+      </div>
+
+      <!-- Área do Labirinto -->
+      <div class="maze-container" id="maze-container">
+        <!-- O labirinto será gerado aqui pelo JavaScript -->
+      </div>
+
+      <!-- Controles Manuais (Setas) -->
+      <div class="manual-controls">
+        <div class="control-row">
+          <button class="control-btn" id="btn-up" title="Mover para cima">⬆</button>
+        </div>
+        <div class="control-row">
+          <button class="control-btn" id="btn-left" title="Mover para esquerda">⬅</button>
+          <button class="control-btn" id="btn-down" title="Mover para baixo">⬇</button>
+          <button class="control-btn" id="btn-right" title="Mover para direita">➡</button>
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="action-buttons">
+        <button class="glow-on-hover" id="btn-solve">Resolver Automaticamente</button>
+        <button class="glow-on-hover" id="btn-next">Próximo Mapa</button>
+      </div>
+
+      <!-- Análise da Travessia (Seção de Resultados) -->
+      <div class="result-section" id="result-section">
+        <h3>📊 Análise da Travessia</h3>
+        <div class="result-content" id="result-content">
+          <p class="result-placeholder">Aguardando resolução do labirinto...</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

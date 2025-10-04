@@ -1,0 +1,549 @@
+/* ========================================
+   RESET E BASE
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  position: relative;
+  background: #000;
+  color: #fff;
+}
+
+/* ========================================
+   VÍDEO DE FUNDO
+   ======================================== */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* ========================================
+   CONTROLES DE ÁUDIO
+   ======================================== */
+.audio-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.audio-btn {
+  background: rgba(10, 5, 24, 0.9);
+  border: 2px solid #14540d;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-btn:hover {
+  background: rgba(0, 255, 85, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 255, 85, 0.5);
+}
+
+.audio-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL DO JOGO
+   ======================================== */
+.game-container {
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 550px;
+  max-height: 90vh;
+  background: rgba(10, 5, 24, 0.95);
+  border: 2px solid #00ff55;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0, 255, 85, 0.4), inset 0 0 30px rgba(0, 255, 85, 0.1);
+  backdrop-filter: blur(15px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 10;
+}
+
+/* Scrollbar personalizada */
+.game-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.game-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.game-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff55, #0088ff);
+  border-radius: 10px;
+}
+
+/* ========================================
+   TÍTULO E SUBTÍTULO
+   ======================================== */
+.game-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #8a2be2, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+  letter-spacing: 1px;
+}
+
+.game-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #aaffcc;
+  margin-bottom: 25px;
+  font-style: italic;
+}
+
+/* ========================================
+   INFORMAÇÕES DO MAPA
+   ======================================== */
+.map-info {
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid #0088ff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.map-info h2 {
+  font-size: 20px;
+  color: #00ddff;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(0, 221, 255, 0.6);
+}
+
+.map-info p {
+  font-size: 13px;
+  color: #88ccff;
+  margin-bottom: 10px;
+}
+
+.map-counter {
+  display: inline-block;
+  background: rgba(0, 255, 85, 0.2);
+  border: 1px solid #00ff55;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 12px;
+  color: #00ff55;
+  font-weight: bold;
+}
+
+/* ========================================
+   ÁREA DO LABIRINTO
+   ======================================== */
+.maze-container {
+  display: grid;
+  gap: 3px;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #8800ff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(136, 0, 255, 0.4), inset 0 0 15px rgba(136, 0, 255, 0.2);
+  justify-content: center;
+}
+
+.maze-cell {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Caminho livre */
+.maze-cell.path {
+  background: rgba(20, 20, 40, 0.7);
+  border: 1px solid rgba(0, 136, 255, 0.3);
+}
+
+/* Parede */
+.maze-cell.wall {
+  background: linear-gradient(135deg, #1a0033, #330066);
+  border: 1px solid #8800ff;
+  box-shadow: 0 0 10px rgba(136, 0, 255, 0.5);
+}
+
+.maze-cell.wall::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(136, 0, 255, 0.3), transparent);
+  animation: pulse-wall 2s infinite;
+}
+
+/* Entrada */
+.maze-cell.entrance {
+  background: linear-gradient(135deg, #00ff55, #00aa33);
+  border: 2px solid #00ff55;
+  box-shadow: 0 0 15px rgba(0, 255, 85, 0.8);
+  font-weight: bold;
+  color: #000;
+}
+
+/* Saída */
+.maze-cell.exit {
+  background: linear-gradient(135deg, #ff00ff, #aa00aa);
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Jogador */
+.maze-cell.player {
+  background: radial-gradient(circle, #ffff00, #ff8800);
+  border: 2px solid #ffff00;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.9);
+  animation: player-glow 1s infinite;
+  font-size: 22px;
+}
+
+/* Caminho da solução */
+.maze-cell.solution {
+  background: rgba(0, 255, 255, 0.4);
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* ========================================
+   CONTROLES MANUAIS (SETAS)
+   ======================================== */
+.manual-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.control-row {
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 136, 255, 0.2);
+  border: 2px solid #0088ff;
+  border-radius: 8px;
+  color: #00ddff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:hover {
+  background: rgba(0, 136, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 136, 255, 0.6);
+  transform: scale(1.1);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   BOTÕES DE AÇÃO (GLOW)
+   ======================================== */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin: 25px 0;
+  justify-content: center;
+}
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SEÇÃO DE RESULTADOS
+   ======================================== */
+.result-section {
+  background: rgba(0, 40, 60, 0.6);
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 25px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.result-section h3 {
+  color: #00ffff;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.result-content {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.result-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.result-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.result-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ffff, #0088ff);
+  border-radius: 10px;
+}
+
+.result-placeholder {
+  color: #88ccff;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.result-step {
+  background: rgba(0, 136, 255, 0.1);
+  border-left: 3px solid #0088ff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: #aaddff;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.result-final {
+  background: rgba(0, 255, 85, 0.2);
+  border: 2px solid #00ff55;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #00ff55;
+  font-size: 14px;
+  box-shadow: 0 0 15px rgba(0, 255, 85, 0.5);
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes pulse-wall {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes player-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 0, 1);
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+@media (max-width: 768px) {
+  .game-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    width: calc(100% - 20px);
+    margin: 10px;
+    max-height: none;
+  }
+
+  .game-title {
+    font-size: 22px;
+  }
+
+  .game-subtitle {
+    font-size: 12px;
+  }
+
+  .maze-cell {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .glow-on-hover {
+    width: 100%;
+  }
+
+  .audio-controls {
+    top: 10px;
+    right: 10px;
+  }
+
+  .audio-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 20px;
+  }
+
+  .game-title {
+    font-size: 1.2rem;
+  }
+
+  .maze-cell {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .control-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+}
