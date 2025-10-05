@@ -1,42 +1,79 @@
-# 🚀 A Travessia do Buraco de Minhoca: Uma Jornada Interdimensional 🌌
+# 🌌 A Travessia do Buraco de Minhoca
 
-![GitHub repo size](https://img.shields.io/github/repo-size/luizfxdev/a-travessia-do-buraco-de-minhoca?style=for-the-badge&color=blueviolet)
-![GitHub language count](https://img.shields.io/github/languages/count/luizfxdev/a-travessia-do-buraco-de-minhoca?style=for-the-badge&color=brightgreen)
-![GitHub top language](https://img.shields.io/github/languages/top/luizfxdev/a-travessia-do-buraco-de-minhoca?style=for-the-badge&color=orange)
-![GitHub last commit](https://img.shields.io/github/last-commit/luizfxdev/a-travessia-do-buraco-de-minhoca?style=for-the-badge&color=ff69b4)
+<div align="center">
 
----
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completo-success?style=for-the-badge)
 
-## 🎮 Sobre o Projeto
+**Um jogo interativo de labirinto espacial com resolução automática de caminhos usando BFS**
 
-**A Travessia do Buraco de Minhoca** é um desafiador jogo de **labirinto com temática espacial**, onde o jogador deve navegar por **mapas interdimensionais**, encontrando o **caminho mais eficiente para escapar**.  
-Cada jornada leva o jogador a um novo universo visual, com trilha sonora imersiva e desafios únicos!
+[🎮 Demo](#-demonstração) • [✨ Características](#-características) • [🚀 Instalação](#-instalação) • [📖 Como Jogar](#-como-jogar) • [🛠️ Tecnologias](#️-tecnologias)
 
----
-
-## 🌠 Tema Musical
-
-🎵 **Música de Fundo:** “Rocket Man” — *Elton John*  
-Um tributo musical que complementa perfeitamente a **atmosfera cósmica e misteriosa** do jogo.
+</div>
 
 ---
 
-## 🛠️ Desafios Técnicos Enfrentados
+## 📋 Sobre o Projeto
 
-### 1. 🎬 Problema do Background de Vídeo
-**Desafio:** Fazer o vídeo de fundo ocupar 100% da tela sem distorção.  
-**Soluções Testadas:**  
-- Múltiplas combinações de propriedades CSS  
-- Diferentes abordagens com `position` e `object-fit`  
+**A Travessia do Buraco de Minhoca** é um jogo interativo onde você controla uma nave espacial que precisa escapar de labirintos interdimensionais. O jogo apresenta 5 mapas diferentes com níveis crescentes de dificuldade, desde um labirinto simples até desafios extremamente complexos.
 
-**Resolução Final:**
-```css
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-}
+### 🎯 Conceito
+
+Um viajante intergaláctico, atraído pelo brilho hipnotizante de um buraco de minhoca nas profundezas do cosmo, precisa escapar de um labirinto espacial de dimensões distorcidas onde as leis da física parecem mudar a cada instante. Neste mosaico de energia e matéria, o menor erro pode prender o astronauta por toda a eternidade em fendas temporais desconhecidas!
+
+---
+
+## ✨ Características
+
+### 🎮 Funcionalidades Principais
+
+- **5 Mapas Únicos**: Cada um com nome temático e nível de dificuldade diferente
+  - 🟢 Distorção da Nebulosa (Fácil)
+  - 🟡 Vórtice dos Ecos (Médio)
+  - 🟠 Singularidade Temporal (Difícil)
+  - 🔴 Fenda Quântica (Difícil)
+  - 🔥 Abismo Cósmico Infinito (Muito Difícil)
+
+- **Dois Modos de Jogo**:
+  - 🕹️ **Manual**: Use as setas direcionais (⬅⬆⬇➡) ou teclado para navegar
+  - 🤖 **Automático**: Algoritmo BFS encontra e anima o menor caminho
+
+- **Análise Detalhada**: Sistema completo de análise da travessia em 4 passos
+  - 📍 Análise inicial do labirinto
+  - 🔍 Processo de busca
+  - 🛤️ Caminho encontrado
+  - ✔️ Validação do resultado
+
+### 🎨 Visual e UX
+
+- 🌠 **Tema Galáctico/Futurista**: Design com cores neon (roxo, azul, verde, ciano)
+- ✨ **Animações Suaves**: Transições e efeitos CSS para movimento da nave
+- 💫 **Efeitos Visuais**:
+  - Paredes com glow roxo pulsante
+  - Entrada com brilho verde neon
+  - Saída com efeito magenta
+  - Nave com animação amarela/laranja
+  - Botões com efeito rainbow glowing
+
+- 🎵 **Controles de Áudio**: Música tema com controles para play/pause
+- 📹 **Vídeo de Fundo**: Background em vídeo 4K (3840x2160) com tema espacial
+- 📱 **Design Responsivo**: Funciona perfeitamente em desktop e mobile
+
+---
+
+## 🚀 Instalação
+
+### Pré-requisitos
+
+- Navegador web moderno (Chrome, Firefox, Edge, Safari)
+- Servidor local (opcional, mas recomendado para desenvolvimento)
+
+### Passo a Passo
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/seu-usuario/travessia-buraco-minhoca.git
+cd travessia-buraco-minhoca
